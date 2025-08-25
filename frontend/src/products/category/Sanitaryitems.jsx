@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 
 const StarRating = ({ rating = 0, showCount = false, reviewCount = 0 }) => {
     const stars = [1, 2, 3, 4, 5];
-    
+
     const getStarColor = (starValue) => {
         return starValue <= rating ? '#ffd700' : '#ccc';
     };
@@ -26,12 +26,12 @@ const StarRating = ({ rating = 0, showCount = false, reviewCount = 0 }) => {
             <span className="rating-text">
                 {rating > 0 ? (
                     <>
-                         {rating.toFixed(1)}/5
-                         {showCount && reviewCount > 0 && (
-                             <span className="review-count">
-                                 {` (${reviewCount} review${reviewCount !== 1 ? 's' : ''})`}
-                             </span>
-                         )}
+                        {rating.toFixed(1)}/5
+                        {showCount && reviewCount > 0 && (
+                            <span className="review-count">
+                                {` (${reviewCount} review${reviewCount !== 1 ? 's' : ''})`}
+                            </span>
+                        )}
                     </>
                 ) : 'No ratings yet'}
             </span>
@@ -123,7 +123,7 @@ function Sanitaryitems({ searchQuery = "" }) {
             item.name?.toLowerCase().includes(searchLower) ||
             item.title?.toLowerCase().includes(searchLower) ||
             item.Price?.toString().includes(searchQuery)
-        );  
+        );
     });
 
     return (
@@ -143,26 +143,26 @@ function Sanitaryitems({ searchQuery = "" }) {
                                             {d.title}
                                         </p>
 
-                                        <StarRating 
+                                        <StarRating
                                             rating={itemRating?.avgRating || 0}
                                             showCount={true}
                                             reviewCount={itemRating?.count || 0}
                                         />
-                                        
+
                                         <p className="item-price">
                                             &#8377; {d.Price}
                                         </p>
-                                        
+
                                         <div className="button-container">
-                                            <button 
+                                            <button
                                                 onClick={() => handleAddToCart(d)}
-                                                 className="add-cart-button"
+                                                className="add-cart-button"
                                             >
                                                 Add to Cart
                                             </button>
-                                            
+
                                             {userEmail === 'mittalarshit56@gmail.com' && (
-                                                <button 
+                                                <button
                                                     onClick={() => handleDelete(d.id)}
                                                     className="delete-item-button"
                                                 >

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Products from './Products';
-import Wiringitem from './category/Wiringitem';
-import Homeappliances from './category/Homeappliances';
-import Tools from './category/Tools'
-import Lighting from './category/Lighting'
-import Sanitaryitems from './category/Sanitaryitems';
+import Products from './Products/Products.jsx';
+import Wiringitem from './category/Wiringitem.jsx';
+import Homeappliances from './category/Homeappliances.jsx';
+import Tools from './category/Tools.jsx'
+import Lighting from './category/Lighting.jsx'
+import Sanitaryitems from './category/Sanitaryitems.jsx';
 
 function ProductCategoryPage() {
     const { category } = useParams();
