@@ -1,15 +1,15 @@
-import Navbar from './Navbar/Navbar';
-import Body from './Body/Body'
-import Footer from './Footer/Footer';
-import ProductCategoryPage from './products/ProductPageCategory';
-import Aboutus from './AboutUs/Aboutus';
-import ContactUs from './contactus/ContactUs';
-import Login from './Login/Login';
-import AddItem from './AddItem/AddItem';
-import Cart from './Cart/Cart';
-import Checkout from './checkout/checkout';
-import Orders from './Orders/Orders';
-import Forgot from './forgot/Forgot';
+import Navbar from './Navbar/.jsx';
+import Body from './Body/Body.jsx'
+import Footer from './Footer/Footer.jsx';
+import ProductCategoryPage from './products/ProductPageCategory.jsx';
+import Aboutus from './AboutUs/Aboutus.jsx';
+import ContactUs from './contactus/ContactUs.jsx';
+import Login from './Login/Login.jsx';
+import AddItem from './AddItem/AddItem.jsx';
+import Cart from './Cart/Cart.jsx';
+import Checkout from './checkout/checkout.jsx';
+import Orders from './Orders/Orders.jsx';
+import Forgot from './forgot/Forgot.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
 
