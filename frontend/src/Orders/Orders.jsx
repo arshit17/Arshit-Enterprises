@@ -96,7 +96,7 @@
                 return;
             }
 
-            fetch('http://localhost:5500/user-orders', {
+            fetch('https://arshit-enterprises-backend.onrender.com/user-orders', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +126,7 @@
             const token = localStorage.getItem('token');
             if (!token) return;
 
-            fetch('http://localhost:5500/user-refunds', {
+            fetch('https://arshit-enterprises-backend.onrender.com/user-refunds', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -150,7 +150,7 @@
                 return;
             }
 
-            fetch("http://localhost:5500/user-reviews", {
+            fetch("https://arshit-enterprises-backend.onrender.com/user-reviews", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -181,7 +181,7 @@
 
             try {
                 console.log('Submitting review:', { orderId, itemId, rating, reviewText });
-                const res = await fetch("http://localhost:5500/reviews", {
+                const res = await fetch("https://arshit-enterprises-backend.onrender.com/reviews", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -234,7 +234,7 @@
 
         const getOrderStatus = async (orderId) => {
             try {
-                const res = await fetch(`http://localhost:5500/order-status/${orderId}`);
+                const res = await fetch(`https://arshit-enterprises-backend.onrender.com/order-status/${orderId}`);
                 if (res.ok) {
                     const statusData = await res.json();
                     return statusData.status;
@@ -276,7 +276,7 @@
                 console.log('Item data:', itemData);
                 console.log('Order data:', orderData);
 
-                const res = await fetch(`http://localhost:5500/cancel-order/${itemId}`, {
+                const res = await fetch(`https://arshit-enterprises-backend.onrender.com/cancel-order/${itemId}`, {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -330,7 +330,7 @@
             if (!token) return;
 
             try {
-                const res = await fetch(`http://localhost:5500/refund-status/${refundId}`, {
+                const res = await fetch(`https://arshit-enterprises-backend.onrender.com/refund-status/${refundId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
