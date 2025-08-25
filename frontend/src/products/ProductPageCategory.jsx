@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Products from './Products/Products.jsx';
+import Products from './Products.jsx';
 import Wiringitem from './category/Wiringitem.jsx';
 import Homeappliances from './category/Homeappliances.jsx';
 import Tools from './category/Tools.jsx'
