@@ -7,7 +7,7 @@ import ContactUs from './contactus/ContactUs.jsx';
 import Login from './Login/Login.jsx';
 import AddItem from './AddItem/AddItem.jsx';
 import Cart from './Cart/Cart.jsx';
-import Checkout from './checkout/checkout.jsx';
+import Checkout from './checkout/Checkout.jsx';
 import Orders from './Orders/Orders.jsx';
 import Forgot from './forgot/Forgot.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
