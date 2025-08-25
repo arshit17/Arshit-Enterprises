@@ -59,7 +59,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     // Fetch products data
     useEffect(() => {
-        fetch('http://localhost:5500/getdata')
+        fetch('https://arshit-enterprises-backend.onrender.com/getdata')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
@@ -67,7 +67,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     // Fetch ratings data
     useEffect(() => {
-        fetch('http://localhost:5500/product-ratings')
+        fetch('https://arshit-enterprises-backend.onrender.com/product-ratings')
             .then(res => res.json())
             .then(ratingsData => {
                 const ratingsMap = {};
@@ -84,7 +84,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`http://localhost:5500/deleteitem/${id}`, {
+            const res = await fetch(`https://arshit-enterprises-backend.onrender.com/deleteitem/${id}`, {
                 method: 'DELETE'
             });
             if (res.ok) {
