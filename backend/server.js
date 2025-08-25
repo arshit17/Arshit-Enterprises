@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const { Pool } = require('pg');
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -23,11 +23,13 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use('/uploads', express.static(process.env.UPLOAD_DIR || 'uploads'));
 
-let data = mysql.createConnection({
+const data = new Pool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 5432,
+    ssl: { rejectUnauthorized: false }
 });
 
 data.connect(err => {
