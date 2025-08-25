@@ -1,5 +1,5 @@
 import React from 'react';
-import './aboutUs.css';
+import './AboutUs.css';
 import OurStory from '../assets/Our_Story.png';
 import { faUser, faRankingStar, faCircleCheck, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
