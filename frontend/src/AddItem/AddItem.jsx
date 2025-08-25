@@ -21,7 +21,7 @@ function AddItem() {
         formData.append('category', category);
         formData.append('image', image);
         try {
-            await axios.post('https://arshit-enterprises-backend.onrender.com', formData, {
+            await axios.post('https://arshit-enterprises-backend.onrender.com/additem', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
