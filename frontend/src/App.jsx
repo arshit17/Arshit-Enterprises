@@ -1,4 +1,4 @@
-import Navbar from './Navbar/.jsx';
+import Navbar from './Navbar/Navbar.jsx';
 import Body from './Body/Body.jsx'
 import Footer from './Footer/Footer.jsx';
 import ProductCategoryPage from './products/ProductPageCategory.jsx';
