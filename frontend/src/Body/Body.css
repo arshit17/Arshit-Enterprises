@@ -1,0 +1,302 @@
+.Intro {
+    border-top: 0.1px solid #DCDCDC;
+    background-image: linear-gradient(#1A1A40, #bcbec1);
+    text-align: center;
+    padding: 1.3vw 0 1.3vw 0;
+    display: flex;
+    justify-content: center;
+    gap: 30vw;
+}
+
+.Intro h1,
+h3 {
+    margin: 3vw;
+}
+
+.Intro button {
+    background-color: rgb(21, 20, 20);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+    border-radius: 0.5vw;
+    width: 10vw;
+}
+
+.Intro button:hover {
+    background-color: rgb(21, 20, 20);
+    transition-duration: 200ms;
+}
+
+.Feature {
+    background-color: #bcbec1;
+    text-align: center;
+    padding: 3vw;
+}
+
+.Feature h2 {
+    margin-bottom: 3vw;
+}
+
+.Cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    justify-content: center;
+}
+
+
+.sepCard {
+    padding: 1vw;
+    background-color: #8E9AAF;
+    border-radius: 1vw;
+}
+
+.sepCard:hover {
+    background-color: #6d7a8f;
+    transform: translateY(-5px) translateX(5px);
+    transition-duration: 300ms;
+    box-shadow: 7px 2px 12px #0d1c29;
+}
+
+.Cards img {
+    height: 13vw;
+    width: 13vw;
+}
+
+.quality {
+    display: flex;
+    background-color: #bcbec1;
+    border-top: 0.1px solid #DCDCDC;
+    padding: 4vw 1vw 6vw 1vw;
+}
+
+.quality1 {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+}
+
+.high {
+    display: flex;
+    background-color: #28292a;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5vw 2.7vw;
+    width: 47%;
+    height: 30%;
+    border-radius: 0.5vw;
+    gap: 2vw;
+}
+
+.quality2 {
+    width: 50%;
+}
+
+.product {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: #28292a;
+    gap: 2vw;
+    border-radius: 1vw;
+    padding: 0.5vw 2vw;
+    margin-bottom: 2vw;
+}
+
+.assistant {
+    background-color: #28292a;
+    width: 68%;
+    height: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1vw;
+    padding: 1.5vw 1vw;
+}
+
+.assistant1 {
+    padding: 0vw 1vw;
+    border-right: 1px solid #DCDCDC;
+}
+
+.assistant2 {
+    width: 50%;
+    padding: 0 2vw;
+    gap: 2vw;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Intro {
+        gap: 20vw;
+    }
+
+    .quality {
+        padding: 3vw 1vw 6vw 1vw;
+    }
+
+    .product {
+        padding: 1vw 4vw;
+    }
+
+    .quality1,
+    .quality2 {
+        width: 100%;
+    }
+
+    .assistant {
+        padding: 2vw 2vw;
+    }
+
+    .high {
+        width: 45%;
+        margin: 1vw;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .Intro {
+        flex-direction: column;
+        padding: 3vw 0;
+        gap: 2vw;
+    }
+
+    .Intro h1,
+    .Intro h3 {
+        margin: 2vw;
+        font-size: 22px;
+    }
+
+    .Intro button {
+        width: 50%;
+        padding: 2vw;
+        font-size: 16px;
+    }
+
+    .Cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 2vw;
+    }
+
+    .sepCard {
+        width: 90%;
+        margin: 2vw 0;
+    }
+
+    .Cards img {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .quality1 {
+        gap: 2vw;
+    }
+
+    .high {
+        width: 80%;
+        height: auto;
+        padding: 3vw;
+        margin: 1vw 0;
+    }
+
+    .product {
+        width: 92%;
+        padding: 1vw;
+        margin: 2vw 2vw;
+    }
+
+    .assistant {
+        width: 90%;
+        height: auto;
+        padding: 2vw;
+        margin: 2vw 1vw;
+    }
+
+    .assistant1 {
+        border-right: none;
+        border-bottom: 1px solid #DCDCDC;
+        padding: 1vw 0;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+    .Intro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 2vw;
+    }
+
+    .Intro h1,
+    .Intro h3 {
+        font-size: 18px;
+    }
+
+    .Intro button {
+        width: 70%;
+        font-size: 14px;
+    }
+
+    .Feature {
+        padding: 4vw 2vw;
+    }
+
+    .Feature h2 {
+        font-size: 20px;
+        margin-bottom: 4vw;
+    }
+
+    .sepCard {
+        width: 90%;
+        padding: 3vw;
+    }
+
+    .Cards img {
+        height: 25vw;
+        width: 25vw;
+    }
+
+    .high {
+        width: 90%;
+        padding: 4vw;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .quality1 {
+        width: 100%;
+    }
+
+    .quality {
+        flex-direction: column;
+        padding: 3vw 1vw 20vw 1vw;
+    }
+
+    .product {
+        width: 90%;
+        padding: 3vw;
+    }
+
+    .assistant {
+        width: 96%;
+        display: flex;
+        height: auto;
+    }
+
+    .quality2 {
+        padding: 0vw 1vw;
+        width: 103%;
+        border-top: 0.1px solid #DCDCDC;
+    }
+}

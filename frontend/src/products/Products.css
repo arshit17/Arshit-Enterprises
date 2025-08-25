@@ -1,0 +1,280 @@
+#product {
+    position: sticky;
+    top: -40px;
+    z-index: 1;
+}
+
+.searchBar {
+    display: flex;
+    gap: 50vw;
+    padding: 3vw 4vw;
+    background-color: #1A1A40;
+}
+
+.searchBar button {
+    border-radius: 0.3vw;
+    border: none;
+    width: 5.5vw;
+    height: 2.2vw;
+    background-color: #436a8d;
+    margin-left: "5vw";
+}
+
+.searchBar button:hover {
+    background-color: #195181;
+}
+
+.itemBar {
+    display: flex;
+    background-color: #F7E7CE;
+    gap: 7vw;
+    position: relative;
+    padding: 1vw 3vw 0vw 3vw;
+}
+
+.itemBar div {
+    padding-bottom: 1vw;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #product {
+        position: sticky;
+        top: -440px;
+        z-index: 1;
+    }
+
+    .searchBar {
+        gap: 30vw;
+        padding: 2vw 3vw;
+    }
+
+    .searchBar button {
+        width: 7vw;
+        height: 3vw;
+    }
+
+    .itemBar {
+        gap: 5vw;
+        padding: 1vw 2vw 0vw 2vw;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+    #product {
+        position: sticky;
+        top: -440px;
+        z-index: 1;
+    }
+
+    .searchBar {
+        flex-direction: column;
+        gap: 2vw;
+        padding: 2vw;
+    }
+
+    .searchBar button {
+        width: 20vw;
+        height: 4vw;
+        margin-left: 0;
+    }
+
+    .itemBar {
+        flex-direction: column;
+        gap: 2vw;
+        padding: 1vw;
+    }
+
+    .itemBar div {
+        text-align: center;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+    #product {
+        position: sticky;
+        top: -440px;
+        z-index: 1;
+    }
+    
+    .itemBar {
+        flex-direction: column;
+        gap: 2vw;
+        padding: 1vw;
+    }
+
+    .itemBar div {
+        text-align: center;
+    }
+
+
+    .searchBar {
+        flex-direction: column;
+        gap: 2vw;
+        padding: 2vw;
+        width: 100%;
+    }
+
+    .searchBar button {
+        width: 20vw;
+        height: 4vw;
+        margin-left: 0;
+    }
+
+    .searchBar button {
+        width: 25vw;
+        height: 9vw;
+        font-size: 14px;
+    }
+
+    .itemBar div {
+        font-size: 14px;
+    }
+}
+
+/* Search Controls Styles */
+.search-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+.search-input {
+    width: 200px;
+    height: 22px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    color: black;
+    padding: 3px;
+}
+
+.clear-button {
+    margin-left: 0.5vw;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: #436a8d;
+    color: white;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background-color: #195181;
+}
+
+.button-spacer {
+    margin: 0 1vw;
+}
+
+.add-button {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #436a8d;
+    color: white;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #195181;
+}
+
+.category-item {
+    color: rgb(68, 60, 60);
+    padding-bottom: 1vw;
+}
+
+.category-item.active {
+    border-bottom: 2px solid #2E4A62;
+    color: #2E4A62;
+}
+
+.category-item h3 {
+    color: #2E4A62;
+    margin: 0;
+}
+
+/* Media Queries for New Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .search-controls {
+        gap: 0.4vw;
+    }
+
+    .search-input {
+        width: 180px;
+    }
+
+    .button-spacer {
+        margin: 0 0.8vw;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .search-controls {
+        flex-direction: column;
+        gap: 1vw;
+        align-items: flex-start;
+    }
+
+    .search-input {
+        width: 100%;
+        height: 25px;
+        padding: 4px;
+    }
+
+    .itemBar div {
+        font-size: 14px;
+    }
+
+    .clear-button,
+    .add-button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .button-spacer {
+        display: none;
+    }
+
+    .category-item {
+        text-align: center;
+        padding: 1vw;
+    }
+}
+
+@media (min-width:0)and(max-width: 480px) {
+    .search-controls {
+        flex-direction: column;
+        gap: 1vw;
+        align-items: flex-start;
+    }
+
+    .search-input {
+        width: 100%;
+        height: 25px;
+        padding: 4px;
+    }
+    .searchBar {
+        width: 100%;
+        flex-direction: column;
+        gap: 2vw;
+        padding: 2vw;
+    }
+
+    .searchBar button {
+        width: 20vw;
+        height: 6vw;
+        margin-left: 0;
+    }
+
+    .clear-button,
+    .add-button {
+        padding: 9px 8px;
+        font-size: 12px;
+    }
+
+    .category-item h3 {
+        font-size: 14px;
+    }
+}

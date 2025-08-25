@@ -1,0 +1,245 @@
+.contactUs {
+    display: flex;
+    margin: 2vw;
+    border-radius: 2vw;
+    background-color: #f5f5f9;
+    padding: 1vw;
+    box-shadow: 1px 1px 30px 15px #1A1A40;
+    margin-bottom: 2vw;
+}
+
+.map-container {
+    width: 50%;
+}
+
+.map-view {
+    position: relative;
+    height: 40%;
+    width: 100%;
+}
+
+.contactDetails {
+    position: relative;
+}
+
+.contact-form {
+    width: 50%;
+    padding: 1vw 3vw;
+    line-height: 2.5vw;
+}
+
+.contact-title {
+    color: #1A1A40;
+    margin: 0 0 1.2vw 0;
+}
+
+.contact-label {
+    color: #1A1A40;
+    display: block;
+    margin-bottom: 0.5vw;
+}
+
+.contact-input {
+    border: none;
+    background-color: #eef5fb;
+    border-radius: 1vw;
+    padding: 0vw 1.5vw;
+    color: #2E4A62;
+    width: 90%;
+    height: 3vw;
+    box-sizing: border-box;
+}
+
+.contact-textarea {
+    border: none;
+    border-radius: 1vw;
+    padding: 1vw 1vw;
+    color: #2E4A62;
+    background-color: #eef5fb;
+    width: 93%;
+    height: 8vw;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.contact-button {
+    height: 2.5vw;
+    width: 99%;
+    border: none;
+    border-radius: 1vw;
+    background-color: #1A1A40;
+    color: white;
+    cursor: pointer;
+}
+
+.contact-button:hover {
+    border-radius: 0.5vw;
+    transition-duration: 500ms;
+    box-shadow: 1px 1px 10px 1px #1A1A40;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .contactUs {
+        flex-direction: column;
+        padding: 0.8vw;
+        height: 76vw;
+    }
+
+    .contact-form {
+        width: 100%;
+        padding: 1vw 2vw;
+        line-height: 2vw;
+    }
+
+    .contact-input,
+    .contact-textarea {
+        font-size: 14px;
+    }
+
+    .contact-button {
+        height: 3vw;
+        font-size: 14px;
+    }
+
+    .map-view{
+        height: 100%;
+    }
+
+    .map-container{
+        display: flex;
+        width: 100%;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .contactUs {
+        margin: 1vw;
+        padding: 0.5vw;
+        border-radius: 1.5vw;
+    }
+
+    .map-container {
+        height: 360px;
+        display: flex;
+        width: 100%;
+        gap: 4vw;
+
+    }
+
+    .contact-form {
+        padding: 0.8vw 1.5vw;
+        line-height: 1.8vw;
+    }
+
+    .contact-input {
+        padding: 0vw 1vw;
+        border-radius: 0.8vw;
+        width: 95%;
+        height: 4vw;
+    }
+
+    .contact-textarea {
+        padding: 0.8vw;
+        border-radius: 0.8vw;
+        width: 97%;
+        height: 10vw;
+    }
+
+    .contact-button {
+        height: 3.5vw;
+        width: 97%;
+        font-size: 13px;
+        border-radius: 0.8vw;
+    }
+
+    .contact-title {
+        font-size: 18px;
+        margin-bottom: 1vw;
+    }
+
+    .contact-label {
+        font-size: 14px;
+        margin-bottom: 0.4vw;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+
+    .map-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .map-view {
+        height: 300%;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .contactDetails {
+        position: relative;
+        width: 100%;
+    }
+
+    .contactUs {
+        flex-direction: column;
+        margin: 0.5vw;
+        padding: 2vw;
+        border-radius: 1vw;
+        height: 230vw;
+    }
+
+    .contact-form {
+        padding: 0.5vw 1vw;
+        line-height: 1.5vw;
+        width: 99%;
+        line-height: normal;
+    }
+
+    .map-container {
+        height: 11%;
+        width: 100%;
+        padding: 0px;
+        z-index: 1;
+    }
+
+    .contactDetails {
+        font-size: 12px;
+    }
+
+    .contact-input,
+    .contact-textarea {
+        font-size: 12px;
+        border-radius: 0.6vw;
+    }
+
+    .contact-input {
+        padding: 0vw 0.8vw;
+        width: 98%;
+        height: 5vw;
+    }
+
+    .contact-textarea {
+        padding: 0.6vw;
+        width: 99%;
+        height: 12vw;
+    }
+
+    .contact-button {
+        height: 7vw;
+        font-size: 12px;
+        border-radius: 0.6vw;
+    }
+
+    .contact-title {
+        font-size: 16px;
+        margin-bottom: 0.8vw;
+    }
+
+    .contact-label {
+        font-size: 12px;
+        margin-bottom: 0.3vw;
+    }
+}

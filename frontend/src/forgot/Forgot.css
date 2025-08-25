@@ -1,0 +1,71 @@
+.forgot-password{
+    background-color: #2E4A62;
+    text-align: center;
+    width: 50%;
+    padding: 2vw 0;
+    border-radius: 1vw;
+    box-shadow: 1px 12px 15px #1A1A40;
+}
+
+.forgot-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forgot-form input {
+    width: 90%;
+    padding: 1rem;
+    border: none;
+    border-radius: 1vw;
+    margin-bottom: 1rem;
+    box-shadow: 1px 1px 5px #1A1A40;
+}
+
+.forgot-form button {
+    width: 80%;
+    padding: 1rem;
+    border: none;
+    border-radius: 1vw;
+    margin-bottom: 1rem;
+    box-shadow: 1px 1px 5px #1A1A40;
+}
+
+@media (min-width:768px) and (max-width: 1024px) {
+    .forgot-password{
+        width: 80%;
+        padding: 3vw 4vw;
+    }
+    .forgot-form input, .forgot-form button {
+        width: 90%;
+        padding: 2rem;
+        height: 1vw;
+    }
+}
+
+@media (min-width:480px) and (max-width: 768px) {
+    .forgot-password{
+        width: 90%;
+        padding: 4vw 0;
+    }
+    .forgot-form input, .forgot-form button {
+        width: 80%;
+        padding: 1rem;
+        padding-bottom: 4vw;
+        height: 1vw;
+        align-items: center;
+    }
+}
+
+@media (min-width:0) and (max-width: 480px) {
+    .forgot-password{
+        width: 90%;
+        padding: 5vw 5vw;
+        border-radius: 2vw;
+    }
+    .forgot-form input, .forgot-form button {
+        width: 80%;
+        padding: 1rem;
+        border-radius: 2vw;
+    }
+}

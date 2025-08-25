@@ -1,0 +1,21 @@
+.star-rating {
+    display: inline-flex;
+    align-items: center;
+}
+
+.star {
+    transition: color 0.2s;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .star-rating {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .star-rating {
+        font-size: 16px;
+    }
+}

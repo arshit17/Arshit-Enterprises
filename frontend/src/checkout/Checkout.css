@@ -1,0 +1,78 @@
+.checkout-container{
+    border: 2px solid black;
+    border-radius: 40px;
+    width: 70%;
+    max-width: 600px;
+    min-width: 280px;
+    padding: 10px 24px;
+    justify-self: center;
+    align-items: center;
+    margin: 30px auto 0 auto;
+    box-shadow: 13px 13px 0px 0px #1A1A40;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.checkout-container input,
+.checkout-container textarea{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.checkout-container h2{
+    color: black;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.checkout-container button{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    background: #1A1A40;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.2s;
+}
+
+.checkout-container button:hover {
+    background: #333366;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+    .checkout-container {
+        width: 90%;
+        padding: 10px 10vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .checkout-container {
+        width: 98%;
+        padding: 10px 2vw;
+        border-radius: 18px;
+        box-shadow: 5px 5px 0px 0px #1A1A40;
+    }
+    .checkout-container h2 {
+        font-size: 1.3rem;
+    }
+    .checkout-container input,
+    .checkout-container textarea {
+        font-size: 0.95rem;
+        padding: 6px;
+    }
+    .checkout-container button {
+        font-size: 1rem;
+        padding: 8px;
+    }
+}

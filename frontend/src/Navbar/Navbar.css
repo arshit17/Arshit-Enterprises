@@ -1,0 +1,235 @@
+.Navbar{
+    display: flex;
+    background-color: #1A1A40;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    overflow: visible; /* Changed from hidden to visible for drawer */
+    border-bottom: 1px solid #DCDCDC;
+    z-index: 1000; /* Increased z-index */
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    width: auto;
+    gap: 0.1vw;
+    align-items: center;
+    padding-left: 5px;
+    padding-bottom: 1px;
+    margin-bottom: 0.2vw;
+    margin-right: auto;
+}
+
+.options{
+    display: flex;
+    width: 60%;
+    gap: 4.5vw;
+    padding: 0 2vw 0 0;
+    justify-content: end;
+}
+
+.options p{
+    position: relative;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+.options p::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #DCDCDC;
+    transition: width 0.3s ease;
+}
+
+.options p:hover::after{
+    width: 100%;
+    text-decoration: underline;
+    transition-duration: 800ms;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+.bar.active:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.bar.active:nth-child(2) {
+    opacity: 0;
+}
+
+.bar.active:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Drawer Styles */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #1A1A40;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-drawer.open {
+    right: 0; /* Slide in from right */
+}
+
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 20px 20px; /* Top padding to account for navbar height */
+    gap: 25px;
+    align-items: center;
+}
+
+.drawer-content a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.drawer-content p {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease;
+}
+
+.drawer-content p:hover {
+    background-color: #2A2A60;
+    border-radius: 5px;
+}
+
+/* Drawer Overlay */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(2px);
+}
+
+/* Hide mobile drawer on desktop */
+.desktop-menu {
+    display: flex;
+}
+
+.mobile-drawer {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .logo {
+        width: auto;
+        align-items: center;
+        margin-top: -3vw;
+        padding: 20px 0;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 480px) and (max-width: 768px) {
+    .Navbar {
+        flex-direction: row;
+        padding: 10px 0;
+        justify-content: space-between;
+    }
+    
+    .logo {
+        width: auto;
+        align-items: center;
+        margin-top: -3vw;
+        padding: 10px 0;
+    }
+    
+    .logo img{
+        margin-top: -12px;
+    }
+
+    .desktop-menu {
+        display: none; /* Hide desktop menu */
+    }
+    
+    .mobile-drawer {
+        display: block; /* Show mobile drawer */
+    }
+    
+    .hamburger {
+        display: flex;
+        margin-right: 20px;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+    .Navbar {
+        flex-direction: row;
+        padding: 10px 0;
+        justify-content: space-between;
+    }
+    
+    .logo {
+        width: auto;
+        align-items: center;
+        margin-top: -12vw;
+        padding: 10px 0;
+    }
+
+    .logo img{
+        margin-top: -13px;
+        height: 60px;
+        width: 150px;
+    }
+    
+    .desktop-menu {
+        display: none; /* Hide desktop menu */
+    }
+    
+    .mobile-drawer {
+        display: block; /* Show mobile drawer */
+    }
+    
+    .hamburger {
+        display: flex;
+        margin-right: 20px;
+    }
+    
+    .drawer-content p {
+        font-size: 16px;
+    }
+}
+
+/* Remove the old options.open styles since we're not using them anymore */
