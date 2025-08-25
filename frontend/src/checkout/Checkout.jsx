@@ -42,7 +42,7 @@ function Checkout() {
         if (!cartTotal) return alert('Cart is empty!');
 
         const { data: order } = await axios.post(
-            'http://localhost:5500/create-order',
+            'https://arshit-enterprises-backend.onrender.com/create-order',
             { amount: cartTotal }
         );
 
@@ -60,7 +60,7 @@ function Checkout() {
             theme: { color: '#3399cc' },
             handler: async response => {
                 await axios.post(
-                    'http://localhost:5500/verify-payment',
+                    'https://arshit-enterprises-backend.onrender.com/verify-payment',
                     {
                         orderId: order.id,
                         paymentId: response.razorpay_payment_id,
