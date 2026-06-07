@@ -54,7 +54,7 @@ function Products({searchQuery, setSearchQuery}) {
                         </button>
                     )}
                     <span className="button-spacer"></span>
-                    {userEmail === 'mittalarshit56@gmail.com' && (
+                    {userEmail === 'arshitenterprises534@gmail.com' && (
                         <Link to='/AddItem'><button className="add-button">Add</button></Link>
                     )}
                 </div>

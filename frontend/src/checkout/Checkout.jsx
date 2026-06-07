@@ -11,7 +11,10 @@ function Checkout() {
     const [userEmail, setUserEmail] = useState('');
 
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+
+        const savedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
         setCartItems(savedCart);
         const token = localStorage.getItem('token');
         if (token) {
@@ -42,7 +45,7 @@ function Checkout() {
         if (!cartTotal) return alert('Cart is empty!');
 
         const { data: order } = await axios.post(
-            'https://arshit-enterprises-backend.onrender.com/create-order',
+            'http://localhost:5500/create-order',
             { amount: cartTotal }
         );
 
@@ -60,7 +63,7 @@ function Checkout() {
             theme: { color: '#3399cc' },
             handler: async response => {
                 await axios.post(
-                    'https://arshit-enterprises-backend.onrender.com/verify-payment',
+                    'http://localhost:5500/verify-payment',
                     {
                         orderId: order.id,
                         paymentId: response.razorpay_payment_id,

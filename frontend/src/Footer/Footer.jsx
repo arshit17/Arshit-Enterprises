@@ -31,7 +31,7 @@ function Footer() {
                     <div className="footerEmail">
                         <h3>Email</h3>
                         <br />
-                        <p>mittalarshit56@gmail.com</p>
+                        <p>arshitenterprises534@gmail.com</p>
                         <p>+91 9461033257</p>
                         <div className='footerIcon' style={{ display: 'flex', height: '0px', justifyContent: 'space-evenly', paddingBottom: '12px' }}>
                             <Link to={''} style={{textDecoration:'none', color:'white'}}><FontAwesomeIcon icon={faFacebookF} style={{ width: '15px' }} /></Link>

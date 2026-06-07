@@ -1,13 +1,16 @@
-import React, { use, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Login.css';
 import login from '../assets/login.jpg';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Auth/AuthContext';
 
 function Login() {
 
     const navigate = useNavigate();
+    const { setToken } = useContext(AuthContext);
 
     const [isSignIn, setIsSignIn] = useState(false);
     const [username, setUsername] = useState('');
@@ -31,12 +34,17 @@ function Login() {
 
     const handleSignin = async (e) => {
         try {
-            const { data } = await axios.post('https://arshit-enterprises-backend.onrender.com/signin', {
+            const { data } = await axios.post('http://localhost:5500/signin', {
                 username: username,
                 email: email,
                 password: password
             });
             localStorage.setItem('token', data.token);
+            localStorage.setItem("email", data.user.email);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            setToken(data.token);
+            console.log("Token set:", data.token);
+            window.dispatchEvent(new Event("authChanged"));
             alert(data.message);
             resetField();
             navigate('/');
@@ -47,11 +55,17 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            const { data } = await axios.post('https://arshit-enterprises-backend.onrender.com/login', {
+            const { data } = await axios.post('http://localhost:5500/login', {
                 email: loginemail,
                 password: loginpassword,
             });
+            console.log(data);
             localStorage.setItem('token', data.token);
+            localStorage.setItem('email', data.user.email);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            setToken(data.token);
+            console.log("Token set:", data.token);
+            window.dispatchEvent(new Event("authChanged"));
             alert(data.message);
             resetField();
             navigate('/');
@@ -79,19 +93,19 @@ function Login() {
                     <div className="card">
                         <div className="front">
                             <h2>Sign In</h2>
-                            <input type="text" name='username' id='username' placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required autoComplete="new-password"/>
-                            <input type="email" name='email' id='email' placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="new-password"/>
-                            <input type="password" name='password' id='password' value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required autoComplete="new-password"/>
+                            <input type="text" name='username' id='username' placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} required autoComplete="new-password" />
+                            <input type="email" name='email' id='email' placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="new-password" />
+                            <input type="password" name='password' id='password' value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required autoComplete="new-password" />
                             <button type='submit' onClick={handleSignin}>Sign In</button>
                             <p style={{ color: '#2E4A62', marginTop: '12px' }}>Already have an account? <a onClick={handleToggle} style={{ color: 'blue' }}>Login</a></p>
                         </div>
                         <div className="back">
                             <h2>Login</h2>
-                            <input type="text" name='email' id='LoginEmail' placeholder="Email" value={loginemail} onChange={e => setLoginemail(e.target.value)} required autoComplete="new-password"/>
+                            <input type="text" name='email' id='LoginEmail' placeholder="Email" value={loginemail} onChange={e => setLoginemail(e.target.value)} required autoComplete="new-password" />
                             <input type="password" name='password' id='LoginPassword' placeholder="Password" value={loginpassword} onChange={e => setLoginpassword(e.target.value)} required autoComplete="new-password" />
-                            <a href="/forgot-password" style={{ color: 'blue', textAlign: 'end', width:'100%', cursor:'pointer'}}>Forgot Password?</a>
+                            <a href="/forgot-password" style={{ color: 'blue', textAlign: 'end', width: '100%', cursor: 'pointer' }}>Forgot Password?</a>
                             <button type='submit' onClick={handleLogin}>Login</button>
-                            <p style={{ color: '#2E4A62', marginTop: '12px' }}>Don't have an account? <a onClick={handleToggle} style={{ color: 'blue', cursor:'pointer'}}>Sign In</a></p>
+                            <p style={{ color: '#2E4A62', marginTop: '12px' }}>Don't have an account? <a onClick={handleToggle} style={{ color: 'blue', cursor: 'pointer' }}>Sign In</a></p>
                         </div>
                     </div>
                 </div>

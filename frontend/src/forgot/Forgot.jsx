@@ -19,14 +19,14 @@ function Forgot() {
         setMessage("");
 
         try {
-            const res = await fetch("https://arshit-enterprises-backend.onrender.com/forgot-password", {
+            const res = await fetch("http://localhost:5500/forgot-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
             });
-            
+
             const data = await res.json();
-            
+
             if (data.success) {
                 setMessage(data.message);
                 setStep(2); // Move to OTP verification step
@@ -41,43 +41,61 @@ function Forgot() {
         }
     };
 
-    // Step 2: Verify OTP
     const handleOtpSubmit = async (e) => {
         e.preventDefault();
+
+        console.log("BUTTON CLICKED");
+        console.log("EMAIL:", email);
+        console.log("OTP:", otp);
+
         setLoading(true);
         setError("");
         setMessage("");
 
         if (otp.length !== 6) {
+            console.log("OTP LENGTH FAILED");
             setError("Please enter a valid 6-digit OTP");
             setLoading(false);
             return;
         }
 
         try {
-            const res = await fetch("https://arshit-enterprises-backend.onrender.com/verify-otp", {
+            console.log("SENDING REQUEST...");
+
+            const res = await fetch("http://localhost:5500/verify-otp", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, otp }),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    otp
+                })
             });
-            
+
+            console.log("RESPONSE STATUS:", res.status);
+
             const data = await res.json();
-            
+
+            console.log("RESPONSE DATA:", data);
+
             if (data.success) {
+                console.log("OTP VERIFIED");
                 setMessage(data.message);
-                setStep(3); // Move to password reset step
+                setStep(3);
             } else {
+                console.log("OTP FAILED");
                 setError(data.message);
             }
+
         } catch (err) {
+            console.log("FETCH ERROR:", err);
             setError("Error verifying OTP. Please try again.");
-            console.error("OTP verification error:", err);
         } finally {
             setLoading(false);
         }
     };
 
-    // Step 3: Reset password
     const handlePasswordReset = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -97,17 +115,16 @@ function Forgot() {
         }
 
         try {
-            const res = await fetch("https://arshit-enterprises-backend.onrender.com/reset-password", {
+            const res = await fetch("http://localhost:5500/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, newPassword }),
             });
-            
+
             const data = await res.json();
-            
+
             if (data.success) {
                 setMessage(data.message);
-                // Reset form after successful password reset
                 setTimeout(() => {
                     setStep(1);
                     setEmail("");
@@ -156,7 +173,7 @@ function Forgot() {
                                 disabled={loading}
                                 required
                             />
-                            <button 
+                            <button
                                 type="submit"
                                 disabled={loading}
                             >
@@ -178,7 +195,11 @@ function Forgot() {
                                 placeholder="Enter 6-digit OTP"
                                 value={otp}
                                 onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, ''); // Only numbers
+
+                                    console.log("INPUT:", e.target.value);
+
+                                    const value = e.target.value.replace(/\D/g, '');
+
                                     if (value.length <= 6) {
                                         setOtp(value);
                                     }
@@ -187,14 +208,14 @@ function Forgot() {
                                 maxLength="6"
                                 required
                             />
-                            <button 
+                            <button
                                 type="submit"
                                 disabled={loading || otp.length !== 6}
                             >
                                 {loading ? 'Verifying...' : 'Verify OTP'}
                             </button>
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 onClick={handleBackToEmail}
                                 disabled={loading}
                             >
@@ -229,14 +250,14 @@ function Forgot() {
                                 minLength="6"
                                 required
                             />
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 disabled={loading || newPassword.length < 6 || newPassword !== confirmPassword}
                             >
                                 {loading ? 'Resetting...' : 'Reset Password'}
                             </button>
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 onClick={handleBackToEmail}
                                 disabled={loading}
                             >
@@ -247,11 +268,11 @@ function Forgot() {
                 )}
 
                 {message && (
-                    <div style={{ 
-                        padding: '10px', 
-                        background: '#d4edda', 
-                        color: '#155724', 
-                        borderRadius: '5px', 
+                    <div style={{
+                        padding: '10px',
+                        background: '#d4edda',
+                        color: '#155724',
+                        borderRadius: '5px',
                         marginTop: '10px',
                         fontSize: '14px'
                     }}>
@@ -260,11 +281,11 @@ function Forgot() {
                 )}
 
                 {error && (
-                    <div style={{ 
-                        padding: '10px', 
-                        background: '#f8d7da', 
-                        color: '#721c24', 
-                        borderRadius: '5px', 
+                    <div style={{
+                        padding: '10px',
+                        background: '#f8d7da',
+                        color: '#721c24',
+                        borderRadius: '5px',
                         marginTop: '10px',
                         fontSize: '14px'
                     }}>

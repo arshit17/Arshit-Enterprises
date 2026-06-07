@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
@@ -15,8 +15,27 @@ function Navbar() {
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(savedCart);
+        const loadCart = () => {
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            if (!user?.email) {
+                setCartItems([]);
+                return;
+            }
+
+            const cartKey = `cart_${user.email}`;
+            const savedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+            setCartItems(savedCart);
+        };
+
+        loadCart();
+
+        window.addEventListener("cartUpdated", loadCart);
+
+        return () => {
+            window.removeEventListener("cartUpdated", loadCart);
+        };
     }, []);
 
     const calculateItems = () => {
@@ -43,10 +62,10 @@ function Navbar() {
         <div className='Navbar'>
             <div className='logo'>
                 <Link to={'/'} style={{ textDecoration: "none", width: "5vw", height: "5vw" }}>
-                    <img src={logo} alt="" style={{ height: '80px', width: '200px'}} />
+                    <img src={logo} alt="" style={{ height: '80px', width: '200px' }} />
                 </Link>
             </div>
-            
+
             {/* Desktop Menu */}
             <div className={`options desktop-menu`}>
                 {token ? (
@@ -76,7 +95,7 @@ function Navbar() {
                 <nav>
                     {token ? (
                         <div onClick={handleLogin} style={{ cursor: 'pointer' }}>
-                            <FontAwesomeIcon id='icon' icon={faUserCircle} size='xl' style={{ color: '#fff', transform:'translate(0px, -2px)', cursor:'pointer'}} />
+                            <FontAwesomeIcon id='icon' icon={faUserCircle} size='xl' style={{ color: '#fff', transform: 'translate(0px, -2px)', cursor: 'pointer' }} />
                         </div>
                     ) : (
                         <Link to={"/signup"} style={{ textDecoration: "none" }}><p>Sign Up</p></Link>

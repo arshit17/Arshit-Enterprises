@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ListingItem.css';
-import './StarRating.css';
+import '../../StarRating/StarRating.css';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -59,7 +59,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     // Fetch products data
     useEffect(() => {
-        fetch('https://arshit-enterprises-backend.onrender.com/getdata')
+        fetch('http://localhost:5500/getdata')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
@@ -67,7 +67,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     // Fetch ratings data
     useEffect(() => {
-        fetch('https://arshit-enterprises-backend.onrender.com/product-ratings')
+        fetch('http://localhost:5500/product-ratings')
             .then(res => res.json())
             .then(ratingsData => {
                 const ratingsMap = {};
@@ -84,7 +84,7 @@ function Wiringitem({ searchQuery = "" }) {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`https://arshit-enterprises-backend.onrender.com/deleteitem/${id}`, {
+            const res = await fetch(`http://localhost:5500/deleteitem/${id}`, {
                 method: 'DELETE'
             });
             if (res.ok) {
@@ -100,7 +100,9 @@ function Wiringitem({ searchQuery = "" }) {
     };
 
     const handleAddToCart = (item) => {
-        const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+        const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
         const itemIndex = existingCart.findIndex(cartItem => cartItem.id === item.id);
 
@@ -117,7 +119,8 @@ function Wiringitem({ searchQuery = "" }) {
         }
 
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        window.dispatchEvent(new Event("cartUpdated"));
         alert("Item added to cart!");
     };
 
@@ -172,7 +175,7 @@ function Wiringitem({ searchQuery = "" }) {
                                                 Add to Cart
                                             </button>
 
-                                            {userEmail === 'mittalarshit56@gmail.com' && (
+                                            {userEmail === 'arshitenterprises534@gmail.com' && (
                                                 <button
                                                     onClick={() => handleDelete(d.id)}
                                                     className="delete-item-button"

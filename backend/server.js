@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -23,7 +23,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use('/uploads', express.static(process.env.UPLOAD_DIR || 'uploads'));
 
-let data = mysql.createConnection({
+const data = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -182,7 +182,15 @@ app.post('/login', async (req, res) => {
         if (!isMatch) return res.status(401).json({ message: "Incorrect password" });
 
         const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: EXPIRE_IN });
-        return res.status(200).json({ message: "Login successful", token });
+        return res.status(200).json({
+            message: "Login successful",
+            token,
+            user: {
+                id: user.id,
+                email: user.email,
+                username: user.username
+            }
+        });
     });
 });
 
@@ -234,6 +242,7 @@ app.post('/forgot-password', (req, res) => {
         }
 
         const otp = generateOTP();
+        console.log("GENERATED OTP:", otp);
         const expiryTime = Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000;
 
         otpStore.set(email.toLowerCase().trim(), {
@@ -252,7 +261,7 @@ app.post('/forgot-password', (req, res) => {
                     <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
                         <h3 style="color: #007bff; margin: 0;">Your OTP Code</h3>
                         <div style="font-size: 32px; font-weight: bold; color: #333; margin: 20px 0; letter-spacing: 5px; background: white; padding: 15px; border-radius: 5px; display: inline-block;">
-                            ${OTP_EXPIRY_MINUTES}
+                            ${otp}
                         </div>
                         <p style="color: #666; margin: 0;">This OTP will expire in 10 minutes</p>
                     </div>
@@ -756,10 +765,13 @@ app.post('/verify-payment', async (req, res) => {
             `
     };
 
-    transporter.sendMail(mail, err =>
-        err ? console.error(err) : console.log('Mail sent!')
-    );
-
+    transporter.sendMail(mail, (err, info) => {
+        if (err) {
+            console.error("MAIL ERROR:", err);
+        } else {
+            console.log("MAIL SUCCESS:", info.response);
+        }
+    });
     console.log('Attempting to save order to database...');
     console.log('Customer data:', customer);
 
@@ -950,7 +962,7 @@ app.delete('/cancel-order/:itemId', verifyToken, async (req, res) => {
 
     // First, get the item details before deletion
     const getItemSQL = 'SELECT * FROM order_items WHERE id = ? AND customer_email = ? LIMIT 1';
-    
+
     data.query(getItemSQL, [parseInt(itemId), userEmail], async (err, results) => {
         if (err) {
             console.error('Error fetching item:', err);
@@ -967,8 +979,8 @@ app.delete('/cancel-order/:itemId', verifyToken, async (req, res) => {
 
         // Check if order is already delivered
         if (item.status && item.status.toLowerCase() === 'delivered') {
-            return res.status(400).json({ 
-                message: 'Cannot cancel delivered orders. Please contact support for returns.' 
+            return res.status(400).json({
+                message: 'Cannot cancel delivered orders. Please contact support for returns.'
             });
         }
 
@@ -1054,8 +1066,8 @@ app.delete('/cancel-order/:itemId', verifyToken, async (req, res) => {
             }
 
             if (deleteResult.affectedRows === 0) {
-                return res.status(404).json({ 
-                    message: 'No item was deleted. Item may not exist or you may not have permission.' 
+                return res.status(404).json({
+                    message: 'No item was deleted. Item may not exist or you may not have permission.'
                 });
             }
 
@@ -1101,7 +1113,7 @@ app.delete('/cancel-order/:itemId', verifyToken, async (req, res) => {
             });
 
             // Return success response
-            res.json({ 
+            res.json({
                 message: 'Item canceled successfully and email sent',
                 deleted: true,
                 affectedRows: deleteResult.affectedRows,

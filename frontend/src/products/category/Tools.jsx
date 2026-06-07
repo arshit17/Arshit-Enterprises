@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ListingItem.css';
-import './StarRating.css';
+import '../../StarRating/StarRating.css';
 import { jwtDecode } from 'jwt-decode';
 
 const StarRating = ({ rating = 0, showCount = false, reviewCount = 0 }) => {
     const stars = [1, 2, 3, 4, 5];
-    
+
     const getStarColor = (starValue) => {
         return starValue <= rating ? '#ffd700' : '#ccc';
     };
@@ -56,14 +56,14 @@ function Tools({ searchQuery = "" }) {
     }
 
     useEffect(() => {
-        fetch('https://arshit-enterprises-backend.onrender.com/getdata')
+        fetch('http://localhost:5500/getdata')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('https://arshit-enterprises-backend.onrender.com/product-ratings')
+        fetch('http://localhost:5500/product-ratings')
             .then(res => res.json())
             .then(ratingsData => {
                 const ratingsMap = {};
@@ -80,7 +80,7 @@ function Tools({ searchQuery = "" }) {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`https://arshit-enterprises-backend.onrender.com/deleteitem/${id}`, {
+            const res = await fetch(`http://localhost:5500/deleteitem/${id}`, {
                 method: 'DELETE'
             });
             if (res.ok) {
@@ -96,7 +96,9 @@ function Tools({ searchQuery = "" }) {
     };
 
     const handleAddToCart = (item) => {
-        const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+        const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
         const itemIndex = existingCart.findIndex(cartItem => cartItem.id === item.id);
 
@@ -113,7 +115,7 @@ function Tools({ searchQuery = "" }) {
         }
 
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
         alert("Item added to cart!");
     };
 
@@ -123,7 +125,7 @@ function Tools({ searchQuery = "" }) {
             item.name?.toLowerCase().includes(searchLower) ||
             item.title?.toLowerCase().includes(searchLower) ||
             item.Price?.toString().includes(searchQuery)
-        );  
+        );
     });
 
     return (
@@ -143,26 +145,26 @@ function Tools({ searchQuery = "" }) {
                                             {d.title}
                                         </p>
 
-                                        <StarRating 
+                                        <StarRating
                                             rating={itemRating?.avgRating || 0}
                                             showCount={true}
                                             reviewCount={itemRating?.count || 0}
                                         />
-                                        
+
                                         <p className="item-price">
                                             &#8377; {d.Price}
                                         </p>
-                                        
+
                                         <div className="button-container">
-                                            <button 
+                                            <button
                                                 onClick={() => handleAddToCart(d)}
                                                 className="add-cart-button"
                                             >
                                                 Add to Cart
                                             </button>
-                                            
-                                            {userEmail === 'mittalarshit56@gmail.com' && (
-                                                <button 
+
+                                            {userEmail === 'arshitenterprises534@gmail.com' && (
+                                                <button
                                                     onClick={() => handleDelete(d.id)}
                                                     className="delete-item-button"
                                                 >

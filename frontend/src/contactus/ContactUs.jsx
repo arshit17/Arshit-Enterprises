@@ -17,7 +17,7 @@ function ContactUs() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://arshit-enterprises-backend.onrender.com/sendEmail', {
+            await axios.post('http://localhost:5500/sendEmail', {
                 name: name,
                 email: email,
                 subject: subject,
@@ -70,7 +70,7 @@ function ContactUs() {
                     <div style={{ color: "#1A1A40" }}>
                         <FontAwesomeIcon icon={faEnvelope} style={{ color: "#1A1A40" }} />
                         &nbsp;
-                        mittalarshit56@gmail.com
+                        arshitenterprises534@gmail.com
                     </div>
                     <br />
                     <div style={{ color: "#1A1A40" }}>

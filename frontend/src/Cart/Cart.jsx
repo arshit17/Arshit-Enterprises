@@ -10,35 +10,49 @@ function Cart() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+
+        const savedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
         setCartItems(savedCart);
     }, []);
 
     const calculateShipping = () => {
         const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-            const totalItemsValue = cartItems.reduce((acc, item) => acc + item.shipping, 0);
-            const averagePrice = totalItemsValue / totalQuantity;
-            return averagePrice;
+        const totalItemsValue = cartItems.reduce((acc, item) => acc + item.shipping, 0);
+        const averagePrice = totalItemsValue / totalQuantity;
+        return averagePrice;
     };
 
-    const shippingCost = calculateShipping();
+    const shippingCost = 0;
     const subtotal = cartItems.reduce((acc, item) => acc + item.Price * item.quantity, 0);
     const total = subtotal + shippingCost;
 
     const handleQuantityChange = (id, quantity) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+
         const updatedCart = cartItems.map(item =>
-            item.id === id ? { ...item, quantity: parseInt(quantity) } : item
+            item.id === id
+                ? { ...item, quantity: parseInt(quantity) }
+                : item
         );
+
         setCartItems(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
     };
 
     const handleRemoveFromCart = (id) => {
-        let updatedCart = cartItems.filter(item => item.id !== id);
+        const user = JSON.parse(localStorage.getItem('user'));
+        const cartKey = `cart_${user.email}`;
+
+        const updatedCart = cartItems.filter(item => item.id !== id);
+
         setCartItems(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+        window.dispatchEvent(new Event("cartUpdated"));
         alert('Item removed from cart!');
-    }
+    };
 
     const handleNavigate = () => {
         if (total.toFixed(2) !== '0.00') {
