@@ -19,7 +19,7 @@ function Forgot() {
         setMessage("");
 
         try {
-            const res = await fetch("http://localhost:5500/forgot-password", {
+            const res = await fetch("https://arshit-enterprises.onrender.com/forgot-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),
@@ -62,7 +62,7 @@ function Forgot() {
         try {
             console.log("SENDING REQUEST...");
 
-            const res = await fetch("http://localhost:5500/verify-otp", {
+            const res = await fetch("https://arshit-enterprises.onrender.com/verify-otp", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -115,7 +115,7 @@ function Forgot() {
         }
 
         try {
-            const res = await fetch("http://localhost:5500/reset-password", {
+            const res = await fetch("https://arshit-enterprises.onrender.com/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, newPassword }),
