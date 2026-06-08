@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(process.env.UPLOAD_DIR || 'uploads'));
 
 
-const connection = mysql.createConnection({
+const data = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
@@ -35,7 +35,7 @@ const connection = mysql.createConnection({
     }
 });
 
-connection.connect(err => {
+data.connect(err => {
     if (err) {
         console.error('MySQL connection failed:', err);
         return;
