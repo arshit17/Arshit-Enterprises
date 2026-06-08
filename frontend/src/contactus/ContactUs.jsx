@@ -17,7 +17,7 @@ function ContactUs() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('https://arshit-enterprises.onrender.com/sendEmail', {
+            await axios.post('http://localhost:5500/sendEmail', {
                 name: name,
                 email: email,
                 subject: subject,

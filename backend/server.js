@@ -17,9 +17,7 @@ const app = express();
 
 app.use(express.json())
 app.use(cors({
-    origin: [
-        'https://arshit-enterprises.vercel.app'
-    ],
+    origin: process.env.CORS_ORIGIN,
     credentials: true
 }));
 app.use(bodyParser.json());

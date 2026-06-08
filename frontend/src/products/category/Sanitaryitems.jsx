@@ -56,14 +56,14 @@ function Sanitaryitems({ searchQuery = "" }) {
     }
 
     useEffect(() => {
-        fetch('https://arshit-enterprises.onrender.com/getdata')
+        fetch('http://localhost:5500/getdata')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('https://arshit-enterprises.onrender.com/product-ratings')
+        fetch('http://localhost:5500/product-ratings')
             .then(res => res.json())
             .then(ratingsData => {
                 const ratingsMap = {};
@@ -80,7 +80,7 @@ function Sanitaryitems({ searchQuery = "" }) {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`https://arshit-enterprises.onrender.com/deleteitem/${id}`, {
+            const res = await fetch(`http://localhost:5500/deleteitem/${id}`, {
                 method: 'DELETE'
             });
             if (res.ok) {
@@ -136,7 +136,7 @@ function Sanitaryitems({ searchQuery = "" }) {
                 <div className="item">
                     {filteredData.length > 0 ? (
                         filteredData
-                            .filter(d => d.category === 'Sanitary Items')
+                            .filter(d => d.category === 'Sanitary Item')
                             .map(d => {
                                 const itemRating = ratings[d.id];
                                 return (
