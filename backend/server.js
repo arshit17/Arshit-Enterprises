@@ -35,7 +35,7 @@ const connection = mysql.createConnection({
     }
 });
 
-data.connect(err => {
+connection.connect(err => {
     if (err) {
         console.error('MySQL connection failed:', err);
         return;
