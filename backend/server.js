@@ -23,6 +23,7 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use('/uploads', express.static(process.env.UPLOAD_DIR || 'uploads'));
 
+
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -30,8 +31,7 @@ const connection = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     ssl: {
-        minVersion: "TLSv1.2",
-        rejectUnauthorized: true
+        ca: fs.readFileSync("./certs/isrgrootx1.pem")
     }
 });
 
